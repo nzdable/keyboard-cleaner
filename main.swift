@@ -25,6 +25,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let allButton = NSButton(title: "Lock Keyboard + Trackpad (\(trackpadSeconds)s)", target: nil, action: nil)
     var timer: Timer?
     var secondsLeft = 0
+    let cat = NSImageView()
+    let idleImage = Bundle.main.image(forResource: "cat") ?? NSImage()
+    // NSImageView plays animated GIFs natively; shown only while locked.
+    let lockedImage = Bundle.main.image(forResource: "lock") ?? NSImage()
 
     func applicationDidFinishLaunching(_ n: Notification) {
         window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 360, height: 180),
@@ -38,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             b.bezelStyle = .rounded
             b.controlSize = .large
         }
-        let cat = NSImageView(image: Bundle.main.image(forResource: "cat") ?? NSImage())
+        cat.animates = true
         cat.imageScaling = .scaleProportionallyUpOrDown
         cat.widthAnchor.constraint(equalToConstant: 280).isActive = true
         cat.heightAnchor.constraint(equalToConstant: 280).isActive = true
@@ -60,6 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             label.stringValue = tap == nil ? "🐱 Paws on the keys" : "🐾 Keyboard LOCKED, clean away"
         }
         button.title = tap == nil ? "Lock Keyboard" : "Unlock (click with mouse)"
+        cat.image = tap == nil ? idleImage : lockedImage
         button.isHidden = timer != nil
         allButton.isHidden = tap != nil
     }

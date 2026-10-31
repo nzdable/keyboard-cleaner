@@ -1,7 +1,10 @@
 # Keyboard Cleaner
 
+<p align="center"><img src="lock.gif" width="320" alt="Cat tapping on a laptop keyboard"></p>
+
 A tiny macOS app that locks your keyboard so you can wipe it without typing junk.
 Click **Lock Keyboard**, clean, then click **Unlock** with your mouse or trackpad.
+While locked, the cat above plays in the window.
 
 To clean the trackpad too, click **Lock Keyboard + Trackpad (30s)**. Everything is locked
 and the pointer freezes. It unlocks by itself after 30 seconds, because nothing can click Unlock.
